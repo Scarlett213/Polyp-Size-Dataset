@@ -9,13 +9,13 @@ def video2img_dataset(video_path, frame_interval, output_dir):
     frame_count = 0
     video_idx = os.path.basename(video_path).replace('.mp4', '')
     print(video_idx)
-    # 循环读取视频的每一帧
+    # Read every frame of the video in a loop
     while True:
         ret, frame = cap.read()
         if not ret:
             break
         if frame_count % frame_interval == 0:
-            # 计算当前帧对应的时间戳（单位：秒）
+            # Calculate the timestamp corresponding to the current frame (in seconds)
             timestamp = frame_count / fps
             frame_name = f"{video_idx}_{timestamp:.2f}_.png"
             frame_path = os.path.join(output_dir, frame_name)
